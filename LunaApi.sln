@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaApi", "LunaApi\LunaApi.csproj", "{9113F8AA-93C0-4231-B08B-701507075161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaApi.Common", "LunaApi.Common\LunaApi.Common.csproj", "{8D7BCF31-25F2-4F39-A49F-4699C4937ABA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunaApi.DAL", "LunaApi.DAL\LunaApi.DAL.csproj", "{558113D2-BF56-4C9A-A399-CA8D1C5A0039}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9113F8AA-93C0-4231-B08B-701507075161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9113F8AA-93C0-4231-B08B-701507075161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9113F8AA-93C0-4231-B08B-701507075161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9113F8AA-93C0-4231-B08B-701507075161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7BCF31-25F2-4F39-A49F-4699C4937ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7BCF31-25F2-4F39-A49F-4699C4937ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7BCF31-25F2-4F39-A49F-4699C4937ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7BCF31-25F2-4F39-A49F-4699C4937ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{558113D2-BF56-4C9A-A399-CA8D1C5A0039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{558113D2-BF56-4C9A-A399-CA8D1C5A0039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{558113D2-BF56-4C9A-A399-CA8D1C5A0039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{558113D2-BF56-4C9A-A399-CA8D1C5A0039}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {42422B78-3980-4779-A4B9-5F2D7A3E2ECC}
+	EndGlobalSection
+EndGlobal
