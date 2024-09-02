@@ -9,7 +9,9 @@ namespace LunaApi.DAL.Data.Interfaces
 {
     public interface IUsersRepository
     {
-        public Task Add(User user);
-        public Task<User> GetByEmail(string email);
+        public Task<User> Add(Guid id, string userName, string passwordHash, string email);
+        public Task<User?> Update(Guid id, string userName, string passwordHash, string email);
+        public Task<bool> Delete(Guid userId);
+        public Task<List<User>> Get();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using LunaApi.Common.Models;
+using LunaApi.DAL.Configurations;
 
 namespace LunaApi.DAL.Data
 {
@@ -11,5 +12,12 @@ namespace LunaApi.DAL.Data
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<TaskEntity> TaskEntity { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new TaskEntityConfiguration());
+        }
     }
 }
