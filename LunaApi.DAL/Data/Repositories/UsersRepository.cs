@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,49 +19,56 @@ namespace LunaApi.DAL.Data.Repositories
             _context = context;
         }
 
-        public async Task<User> Add(Guid id, string userName, string passwordHash, string email)
-        {
-            var userEntity = new User(id,userName, passwordHash, email);
+        public async Task<User?> Login(string userNameOrEmail, string password)
+        {      
+                var user = await _context.Users.
+                FirstOrDefaultAsync(u => u.UserName == userNameOrEmail || u.Email == userNameOrEmail);
 
-            _context.Users.Add(userEntity);
-            await _context.SaveChangesAsync();
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("Invalid username or email");
+            }
 
-            return userEntity;
+            if(!VerifyPassword(password,user.PasswordHash))
+            {
+                throw new UnauthorizedAccessException("Invalid password");
+            }
+
+            return user;
         }
 
-        public async Task<bool> Delete(Guid userId)
+        public async Task<User> Register(string userName, string email, string password)
         {
-            var user = await _context.Users.FindAsync(userId);
+            if (await _context.Users.AnyAsync(u => u.UserName == userName || u.Email == email))
+            {
+                throw new InvalidOperationException("Username or Email already exists.");
+            }
 
-            if(user == null) return false;
+            string passwordHash = HashPassword(password);
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            var userId = Guid.NewGuid();
 
-            return true;
-        }
+            var user = new User(userId,userName,passwordHash,email);
 
-        public async Task<User?> Update(Guid userId, string userName, string passwordHash, string email)
-        {
-            var user = await _context.Users.FindAsync(userId);
-
-            if(user == null) throw new NullReferenceException("User not found");
-
-            user.UpdateUserName(userName);
-            user.UpdateEmail(email);
-            user.UpdatePasswordHash(passwordHash);           
-
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return user;
         }
 
-        public async Task<List<User>> Get()
+        private string HashPassword(string password)
         {
-            return await _context.Users
-                .AsNoTracking()
-                .OrderBy(u => u.UserName)
-                .ToListAsync();
+            using (var sha256 = SHA256.Create())
+            {
+                var hasehBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return BitConverter.ToString(hasehBytes).Replace("-", "").ToLower();
+            }
+        }
+
+        private bool VerifyPassword(string password, string storedHash)
+        {
+            var hash = HashPassword(password);
+            return hash == storedHash;
         }
     }
 }

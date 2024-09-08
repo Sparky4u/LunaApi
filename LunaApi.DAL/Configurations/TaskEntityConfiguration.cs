@@ -15,6 +15,10 @@ namespace LunaApi.DAL.Configurations
         {
             builder.HasKey(t => t.Id);
 
+            builder.Property(u => u.UpdatedAt)
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasDefaultValueSql("GETDATE()");
+
             builder
                 .HasOne(t => t.User)
                 .WithMany(u => u.Tasks);
