@@ -22,7 +22,7 @@ namespace LunaApi.Common.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; }
 
         [Required]
         public Guid UserId { get; set; }

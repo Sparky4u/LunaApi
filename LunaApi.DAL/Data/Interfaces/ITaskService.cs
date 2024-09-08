@@ -1,12 +1,14 @@
-﻿using LunaApi.Common.Models;
+﻿using LunaApi.Common.Enums;
+using LunaApi.Common.Models;
 
 namespace LunaApi.DAL.Data.Interfaces
 {
     public interface ITaskService
     {
-        Task<IEnumerable<TaskEntity>> GetUserTasks(Guid userId);
-        Task<TaskEntity> CreateTask(Guid userId, TaskEntity task);
-        Task<TaskEntity> UpdateTask(Guid userId, TaskEntity updatedTask);
-        Task DeleteTask(Guid userId, Guid taskId);
+        Task<List<TaskEntity>> GetTasks(Guid userId, Status? status = null, DateTime? dueDate = null, Priority? priority = null);
+        Task<TaskEntity> CreateTask(Guid userId, string title, string description, DateTime? dueDate, Status status, Priority priority);
+        Task<TaskEntity?> GetTaskById(Guid userId,Guid taskId);
+        Task<TaskEntity?> UpdateTask(Guid userId, Guid taskId, string title, string description, DateTime? dueDate, Status status, Priority priority);
+        Task<bool> DeleteTask(Guid userId, Guid taskId);
     }
 }

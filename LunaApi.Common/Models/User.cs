@@ -34,28 +34,6 @@ namespace LunaApi.Common.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; private set; }
         public ICollection<TaskEntity> Tasks { get; private set; } = new List<TaskEntity>();
-
-        public void UpdateUserName(string userName)
-        {
-            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
-            UpdatedAt = DateTime.Now;
-        }
-
-        public void UpdateEmail(string email)
-        {
-            Email = email ?? throw new ArgumentNullException(nameof(email));
-            UpdatedAt = DateTime.Now;
-        }
-
-        public void UpdatePasswordHash(string passwordHash)
-        {
-            PasswordHash = passwordHash ?? throw new ArgumentNullException(nameof(passwordHash));
-            UpdatedAt = DateTime.Now;
-        }
-
-        public static User Create(Guid id, string userName, string passwordHash, string email)
-        {
-            return new User(id, userName, passwordHash, email);
-        }
+       
     }
 }
