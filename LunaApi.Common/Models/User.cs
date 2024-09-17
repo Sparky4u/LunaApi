@@ -29,8 +29,7 @@ namespace LunaApi.Common.Models
         public string Email { get; private set; }
         [Required]
         public string PasswordHash { get; private set; }
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; } = DateTime.Now;
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdatedAt { get; private set; }
         public ICollection<TaskEntity> Tasks { get; private set; } = new List<TaskEntity>();

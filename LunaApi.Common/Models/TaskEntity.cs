@@ -18,7 +18,6 @@ namespace LunaApi.Common.Models
         [Required]
         public Priority Priority { get; set; } = Priority.Medium;
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
